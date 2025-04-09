@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CASEY – Your Legal Sidekick</title>
+  <style>
+    body {
+      font-family: 'Proxima Nova', Tahoma, Geneva, Verdana, sans-serif;
+      background: #FFF5EE;
+      color: #333;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      font-weight: 600;
+    }
+    .button-primary {
+      background: #C9A9A6;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    .button-primary:hover {
+      background: #673147;
+    }
+    .issue-buttons button, .step-buttons button, .back-button {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      background: #ffffff;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .issue-buttons button:hover, .step-buttons button:hover, .back-button:hover {
+      background-color: #ffffff;
+      border-color: #E0BFB8;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+    .card h2 {
+      margin-top: 0;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    a {
+      color: #4f46e5;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    #navigator, #divorce-steps, #employment-steps, #court-navigator {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Landing Page -->
+<div id="landing">
+  <h1>CASEY</h1>
+  <p><strong>Your legal sidekick – no wigs, just real help.</strong></p>
+
+<p>This tool isn’t doing anything revolutionary; it’s simply bringing together legal information that’s already out there and presenting it in a way that’s clear, calm, and easy to follow.</p>
+
+<p>You shouldn't need to speak legal jargon or hire a solicitor just to understand what’s happening.</p>
+
+<p>Here’s what it helps you do:</p>
+<ul>
+  <li>Understand what’s going on</li>
+  <li>Know what to expect at each stage, from forms to court</li>
+  <li>Find legal support, representation, or free advice if needed</li>
+  <li>Avoid common mistakes that could delay or hurt your case</li>
+  <li>Feel more confident, even if you’re doing this on your own</li>
+</ul>
+
+    <button class="button-primary" onclick="startNavigator()">Start my legal journey</button>
+  </div>
+
+  <div id="navigator">
+    <h2>What are you dealing with?</h2>
+    <p>Select the legal problem that best describes your situation. We'll explain what your rights are, what the process looks like, and how to take action step by step.</p>
+
+    <div class="issue-buttons">
+      <button onclick="startDivorceJourney()">I want to apply for a divorce</button>
+      <button onclick="startEmploymentJourney()">I’ve been dismissed from work</button>
+<button onclick="startCourtNavigator()">I want to understand which court I’m going to</button>
+      <button onclick="alert('Eviction journey coming soon.')">My landlord is trying to evict me</button>
+      <button onclick="alert('Family court journey coming soon.')">I want to apply for a child arrangements order</button>
+      <button onclick="alert('Benefits appeal journey coming soon.')">I need to challenge a benefits decision</button>
+    </div>
+  </div>
+
+  <div id="divorce-steps">
+    <h2>Divorce: Step <span id="divorce-step-num">1</span> of 4</h2>
+    <div class="card" id="divorce-step"></div>
+    <div class="step-buttons">
+      <button onclick="prevDivorceStep()">Back</button>
+      <button onclick="nextDivorceStep()">Next</button>
+<button class="back-button" onclick="backToNavigator('divorce-steps')">← Back to all issues</button>
+    </div>
+  </div>
+
+  <div id="employment-steps">
+    <h2>Dismissal: Step <span id="employment-step-num">1</span> of 4</h2>
+    <div class="card" id="employment-step"></div>
+    <div class="step-buttons">
+      <button onclick="prevEmploymentStep()">Back</button>
+      <button onclick="nextEmploymentStep()">Next</button>
+<button class="back-button" onclick="backToNavigator('employment-steps')">← Back to all issues</button>
+    </div>
+  </div>
+
+<div id="court-navigator" style="display: none;">
+  <h2>Court Navigator</h2>
+
+  <p>The justice system can feel distant, complex, and full of jargon. This guide is here to demystify it, not by showing you a chart, but by walking you through what court or tribunal you're likely to deal with and what that means for you.</p>
+
+  <div class="card">
+    <h3>How the system works</h3>
+    <p>In England and Wales, different courts handle different types of legal problems. You’re not expected to know which one applies, we’ll guide you based on what your issue is about.</p>
+    <ul>
+      <li><strong>Tribunals</strong> handle things like benefits, immigration, or special educational needs and are often less formal than courts.</li>
+      <li><strong>County Courts</strong> deal with most civil issues, like disputes over money, housing, or personal injury.</li>
+      <li><strong>Family Courts</strong> deal with child arrangements, divorce, and protection from abuse.</li>
+      <li><strong>Employment Tribunals</strong> handle problems like dismissal or discrimination at work.</li>
+      <li><strong>Magistrates’ Courts</strong> handle most criminal cases and some family matters.</li>
+      <li><strong>Higher courts</strong> (like the Crown Court, High Court, or Court of Appeal) handle more serious or complex cases or appeals.</li>
+    </ul>
+    <p>This tool explains the journey based on your issue step by step, in plain English (and ideally other languages).</p>
+  </div>
+
+  <h3>What’s your issue about?</h3>
+  <div class="issue-buttons">
+    <button onclick="loadCourtJourney('civil')">I have a civil dispute</button>
+    <button onclick="loadCourtJourney('family')">It’s a family issue</button>
+    <button onclick="loadCourtJourney('employment')">It’s about work</button>
+    <button onclick="loadCourtJourney('housing')">It’s a housing issue</button>
+    <button onclick="loadCourtJourney('immigration')">It’s about immigration</button>
+    <button onclick="loadCourtJourney('crime')">I’ve been accused of a crime</button>
+  </div>
+
+  <div id="court-journey-output" class="card" style="display: none;"></div>
+  <button class="back-button" onclick="backToNavigator('court-navigator')">← Back to all issues</button>
+</div>
+
+  <script>
+
+function startCourtNavigator() {
+  document.getElementById("navigator").style.display = "none";
+  document.getElementById("court-navigator").style.display = "block";
+}
+
+function loadCourtJourney(category) {
+  const journeys = {
+    civil: {
+      title: "Civil Dispute",
+      content: `
+        <p>If you’re dealing with a problem like unpaid money, a broken contract, or damage to property, your case is usually handled by the <strong>County Court</strong>.</p>
+        <p>Most civil cases are sorted through paperwork and written evidence. You may not need to go to a hearing unless things are disputed.</p>
+        <p>If the case is very complex or high value, it might go to the <strong>High Court</strong>.</p>`
+    },
+    family: {
+      title: "Family Matter",
+      content: `
+        <p>Issues like divorce, child arrangements, or domestic abuse protection are dealt with by the <strong>Family Court</strong>.</p>
+        <p>Some applications (like divorce) can be done online. Others may involve private hearings, especially where children are involved.</p>
+        <p>The focus is always on safety, fairness, and the child’s best interests.</p>`
+    },
+    employment: {
+      title: "Employment Issue",
+      content: `
+        <p>If you've been dismissed, treated unfairly, or discriminated against at work, your case will usually go to the <strong>Employment Tribunal</strong>.</p>
+        <p>Before that, you must go through <a href='https://www.acas.org.uk/early-conciliation' target='_blank'>ACAS Early Conciliation</a> to see if things can be resolved.</p>
+        <p>The tribunal is more informal than court — you can represent yourself, and decisions are based on evidence and fairness.</p>`
+    },
+    housing: {
+      title: "Housing Issue",
+      content: `
+        <p>If you’re being evicted or there’s a dispute with your landlord, your case likely goes to the <strong>County Court</strong>.</p>
+        <p>You’ll receive papers telling you when and where to attend. You may be able to get help on the day from a duty solicitor.</p>
+        <p>Housing law can be fast-moving, and deadlines matter.</p>`
+    },
+    immigration: {
+      title: "Immigration Case",
+      content: `
+        <p>If the Home Office has refused your visa, asylum, or settlement application, you may be able to appeal to the <strong>First-tier Tribunal</strong>.</p>
+        <p>Some hearings are in person, others are remote. You can have legal representation or ask support organisations for help.</p>`
+    },
+    crime: {
+      title: "Criminal Case",
+      content: `
+        <p>If you’re accused of a crime, your case starts in the <strong>Magistrates’ Court</strong>. For more serious charges, it may go to the <strong>Crown Court</strong>.</p>
+        <p>You have a right to a lawyer. If you can’t afford one, you might qualify for legal aid.</p>
+        <p>The court will tell you when and where to attend. Make sure to read everything they send you carefully.</p>`
+    }
+  };
+
+  const output = document.getElementById("court-journey-output");
+  const data = journeys[category];
+  output.innerHTML = `<h3>${data.title}</h3>${data.content}`;
+  output.style.display = "block";
+}
+    function startNavigator() {
+      document.getElementById("landing").style.display = "none";
+      document.getElementById("navigator").style.display = "block";
+    }
+
+    function startDivorceJourney() {
+      document.getElementById("navigator").style.display = "none";
+      document.getElementById("divorce-steps").style.display = "block";
+      divorceStepIndex = 0;
+      renderDivorceStep();
+    }
+
+    function startEmploymentJourney() {
+      document.getElementById("navigator").style.display = "none";
+      document.getElementById("employment-steps").style.display = "block";
+      employmentStepIndex = 0;
+      renderEmploymentStep();
+    }
+
+    const divorceSteps = [
+      {
+        title: "Starting a divorce: what you need to know",
+        content: `<p>Divorce is a legal process to end a marriage or civil partnership. Since 2022, you no longer have to give a reason; you can just state that the relationship has broken down. You can apply alone or together.</p>
+        <p>You'll usually apply through the government’s online portal unless you prefer to use a paper form.</p>`
+      },
+      {
+        title: "Sole or joint application?",
+        content: `<p>You can apply for a divorce on your own (a sole application) or together with your spouse (a joint application).</p>
+        <ul>
+          <li><strong>Sole application:</strong> You apply alone. The other person responds.</li>
+          <li><strong>Joint application:</strong> You both work together to apply and receive updates.</li>
+        </ul>
+        <p>The choice won’t affect the outcome, but a joint application may feel more cooperative if possible.</p>`
+      },
+      {
+        title: "Do you need help with children or finances?",
+        content: `<p>The divorce itself only ends the marriage. If you need to make arrangements for children or sort out finances (like property or pensions), you’ll need to apply separately for:</p>
+        <ul>
+          <li><strong>Child arrangements order</strong> — if you can’t agree where the children live or how much time they spend with each parent.</li>
+          <li><strong>Financial order</strong> — to legally split money, property or debt.</li>
+        </ul>`
+      },
+      {
+        title: "How to apply",
+        content: `<p>You’ll need your marriage certificate and your partner’s full name and address. Most people apply online. The divorce process has two main stages:</p>
+        <ol>
+          <li><strong>Apply for divorce</strong> online or using Form D8</li>
+          <li><strong>Wait 20 weeks</strong> then apply for a conditional order</li>
+          <li><strong>Wait 6 weeks</strong> then apply for a final order</li>
+        </ol>
+        <p>Once you get the final order, the divorce is legally complete.</p>
+        <p><a href="https://www.gov.uk/divorce" target="_blank">Apply online at GOV.UK</a> or <a href="https://www.gov.uk/government/publications/form-d8-application-for-a-divorce-dissolution-or-to-apply-for-a-judicial-separation-order" target="_blank">download Form D8</a>.</p>`
+      }
+    ];
+
+    const employmentSteps = [
+      {
+        title: "Understanding dismissal",
+        content: `<p>If you've been fired or told your job is ending, the first step is understanding whether it was fair. Employers must follow certain rules when dismissing someone, like giving a reason and following a process.</p>
+        <p>There are different types of dismissal (e.g. redundancy, misconduct, capability). Some are allowed by law, but only if handled correctly.</p>`
+      },
+      {
+        title: "What are your rights?",
+        content: `<p>You may have a legal claim if:</p>
+        <ul>
+          <li>You were dismissed without a valid reason</li>
+          <li>The employer didn’t follow a fair process (e.g. no warnings or hearing)</li>
+          <li>You were treated unfairly because of discrimination or whistleblowing</li>
+        </ul>
+        <p>You usually need to have worked at least 2 years to claim unfair dismissal — but there are exceptions (e.g. discrimination doesn’t have a time requirement).</p>`
+      },
+      {
+        title: "Next steps: ACAS early conciliation",
+        content: `<p>Before you can make a claim to the Employment Tribunal, you must contact ACAS for early conciliation. They’ll try to resolve the dispute between you and your employer.</p>
+        <p>This is free, and a legal requirement before making a claim.</p>
+        <p><a href="https://www.acas.org.uk/early-conciliation" target="_blank">Start ACAS early conciliation</a></p>`
+      },
+      {
+        title: "Making a claim to the tribunal",
+        content: `<p>If ACAS can’t resolve things — or you choose not to settle — you can submit a claim to the Employment Tribunal using the ET1 form.</p>
+        <p>You must do this within 3 months (less one day) of your dismissal.</p>
+        <p>Bring evidence like emails, contracts, meeting notes, and any written reasons for dismissal.</p>
+        <p><a href="https://www.gov.uk/government/publications/make-a-claim-to-an-employment-tribunal-form-et1" target="_blank">Download the ET1 form</a> or <a href="https://www.gov.uk/government/publications/making-a-claim-to-an-employment-tribunal-t420" target="_blank">read the tribunal guidance</a>.</p>`
+      }
+    ];
+
+    let divorceStepIndex = 0;
+    function renderDivorceStep() {
+      document.getElementById("divorce-step-num").textContent = divorceStepIndex + 1;
+      document.getElementById("divorce-step").innerHTML = `
+        <h3>${divorceSteps[divorceStepIndex].title}</h3>
+        ${divorceSteps[divorceStepIndex].content}
+      `;
+    }
+    function nextDivorceStep() {
+      if (divorceStepIndex < divorceSteps.length - 1) {
+        divorceStepIndex++;
+        renderDivorceStep();
+      }
+    }
+    function prevDivorceStep() {
+      if (divorceStepIndex > 0) {
+        divorceStepIndex--;
+        renderDivorceStep();
+      }
+    }
+
+    let employmentStepIndex = 0;
+    function renderEmploymentStep() {
+      document.getElementById("employment-step-num").textContent = employmentStepIndex + 1;
+      document.getElementById("employment-step").innerHTML = `
+        <h3>${employmentSteps[employmentStepIndex].title}</h3>
+        ${employmentSteps[employmentStepIndex].content}
+      `;
+    }
+    function nextEmploymentStep() {
+      if (employmentStepIndex < employmentSteps.length - 1) {
+        employmentStepIndex++;
+        renderEmploymentStep();
+      }
+    }
+    function prevEmploymentStep() {
+      if (employmentStepIndex > 0) {
+        employmentStepIndex--;
+        renderEmploymentStep();
+      }
+    }
+function backToNavigator(currentSection) {
+  document.getElementById(currentSection).style.display = "none";
+  document.getElementById("navigator").style.display = "block";
+}
+  </script>
+</body>
+</html>
