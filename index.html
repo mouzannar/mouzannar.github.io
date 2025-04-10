@@ -100,10 +100,10 @@
     <p>Select the legal problem that best describes your situation. We'll explain what your rights are, what the process looks like, and how to take action step by step.</p>
 
     <div class="issue-buttons">
-      <button onclick="startEmploymentTribunalFlow()">I need to go to the Employment Tribunal</button>
       <button onclick="startDivorceJourney()">I want to apply for a divorce</button>
       <button onclick="startEmploymentJourney()">I’ve been dismissed from work</button>
-<button onclick="startCourtNavigator()">I want to understand which court I’m going to</button>
+      <button onclick="startEmploymentTribunalFlow()">I need to go to the Employment Tribunal</button>
+      <button onclick="startCourtNavigator()">I want to understand which court I’m going to</button>
       <button onclick="alert('Eviction roadmap coming soon.')">My landlord is trying to evict me</button>
       <button onclick="alert('Family court roadmap coming soon.')">I want to apply for a child arrangements order</button>
       <button onclick="alert('Benefits appeal roadmap coming soon.')">I need to challenge a benefits decision</button>
@@ -310,7 +310,7 @@ function loadCourtJourney(category) {
       {
         title: "Making a claim to the tribunal",
         content: `<p>If ACAS can’t resolve things, or you choose not to settle, you can submit a claim to the Employment Tribunal using the ET1 form.</p>
-        <p>You must do this within 3 months (less one day) of your dismissal.</p>
+        <p>You must do this within 3 months (minus one day) of your dismissal.</p>
         <p>Bring evidence like emails, contracts, meeting notes, and any written reasons for dismissal.</p>
         <p><a href="https://www.gov.uk/government/publications/make-a-claim-to-an-employment-tribunal-form-et1" target="_blank">Download the ET1 form</a> or <a href="https://www.gov.uk/government/publications/making-a-claim-to-an-employment-tribunal-t420" target="_blank">read this guidance</a>.</p>`
       }
@@ -368,7 +368,7 @@ const tribunalSteps = [
   {
     title: "Early Conciliation (ACAS)",
     content: `<p>Before starting a claim, you must contact ACAS for early conciliation. This is free and legally required. ACAS will try to resolve the dispute between you and your employer. If it doesn’t work, they’ll issue a certificate with a reference number.</p>
-    <p>You must do this within 3 months less one day from the issue (e.g. dismissal or discrimination).</p>`
+    <p>You must do this within 3 months minus one day from the issue (e.g. dismissal or discrimination).</p>`
   },
   {
     title: "Submit Your Claim (ET1 Form)",
@@ -380,7 +380,7 @@ const tribunalSteps = [
   },
   {
     title: "Standard Disclosure",
-    content: `<p>You must share all relevant documents — even if they hurt your case. This includes emails, letters, notes, and messages. Do not withhold anything relevant. This is a duty of fairness.</p>`
+    content: `<p>You must share all relevant documents, even if they hurt your case. This includes emails, letters, notes, and messages. Do not withhold anything relevant. This is a duty to disclose.</p>`
   },
   {
     title: "Specific Disclosure Requests",
@@ -392,11 +392,11 @@ const tribunalSteps = [
   },
   {
     title: "Witness Statements and Bundle",
-    content: `<p>You must prepare a signed, dated witness statement — your story in numbered paragraphs. The bundle is a file of documents used at the hearing, often prepared by the employer. You can suggest changes if anything is missing or wrong.</p>`
+    content: `<p>You must prepare a signed, dated witness statement. This is your story in numbered paragraphs. The bundle is a file of documents used at the hearing, often prepared by the employer. You can suggest changes if anything is missing or wrong.</p>`
   },
   {
     title: "The Hearing",
-    content: `<p>You’ll attend the tribunal hearing — in person, by phone, or online. You’ll answer questions (cross-examination) and can question the other side. Speak clearly and respectfully. Call the judge “Judge”.</p>`
+    content: `<p>You’ll attend the tribunal hearing, in person or online. You’ll answer questions (cross-examination) and can question the other side. Speak clearly and respectfully. Call the judge “Judge” and stand up when they enter and leave the room.</p>`
   },
   {
     title: "The Decision",
