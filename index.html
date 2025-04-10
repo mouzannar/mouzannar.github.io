@@ -100,6 +100,7 @@
     <p>Select the legal problem that best describes your situation. We'll explain what your rights are, what the process looks like, and how to take action step by step.</p>
 
     <div class="issue-buttons">
+      <button onclick="startEmploymentTribunalFlow()">I need to go to the Employment Tribunal</button>
       <button onclick="startDivorceJourney()">I want to apply for a divorce</button>
       <button onclick="startEmploymentJourney()">I’ve been dismissed from work</button>
 <button onclick="startCourtNavigator()">I want to understand which court I’m going to</button>
@@ -128,6 +129,16 @@
 <button class="back-button" onclick="backToNavigator('employment-steps')">← Back to all issues</button>
     </div>
   </div>
+
+  <div id="employment-tribunal-flow" style="display: none;">
+  <h2>Employment Tribunal Process</h2>
+  <div class="card" id="employment-tribunal-step"></div>
+  <div class="step-buttons">
+    <button onclick="prevTribunalStep()">Back</button>
+    <button onclick="nextTribunalStep()">Next</button>
+    <button class="back-button" onclick="backToNavigator('employment-tribunal-flow')">← Back to all issues</button>
+  </div>
+</div>
 
 <div id="court-navigator" style="display: none;">
   <h2>Court Navigator</h2>
@@ -349,6 +360,77 @@ function loadCourtJourney(category) {
 function backToNavigator(currentSection) {
   document.getElementById(currentSection).style.display = "none";
   document.getElementById("navigator").style.display = "block";
+}
+
+    let tribunalStepIndex = 0;
+
+const tribunalSteps = [
+  {
+    title: "Early Conciliation (ACAS)",
+    content: `<p>Before starting a claim, you must contact ACAS for early conciliation. This is free and legally required. ACAS will try to resolve the dispute between you and your employer. If it doesn’t work, they’ll issue a certificate with a reference number.</p>
+    <p>You must do this within 3 months less one day from the issue (e.g. dismissal or discrimination).</p>`
+  },
+  {
+    title: "Submit Your Claim (ET1 Form)",
+    content: `<p>After conciliation ends, you can submit your claim to the Employment Tribunal. You’ll need your ACAS certificate number, a timeline of what happened, and supporting documents like emails or contracts. You can submit online.</p>`
+  },
+  {
+    title: "Case Accepted and Directions",
+    content: `<p>Once accepted, the tribunal may send you case management directions. These include deadlines for disclosure, witness statements, and bundles. You must follow these or request an extension in writing.</p>`
+  },
+  {
+    title: "Standard Disclosure",
+    content: `<p>You must share all relevant documents — even if they hurt your case. This includes emails, letters, notes, and messages. Do not withhold anything relevant. This is a duty of fairness.</p>`
+  },
+  {
+    title: "Specific Disclosure Requests",
+    content: `<p>If you believe the other side hasn’t shared something important, you can ask for it. If they refuse, you can apply to the tribunal to order them to disclose it. Be specific about what you want and why.</p>`
+  },
+  {
+    title: "Preserve All Evidence",
+    content: `<p>Do not delete or destroy any documents. This includes emails, messages, and notes. Destroying evidence after a claim has started may be considered contempt of court.</p>`
+  },
+  {
+    title: "Witness Statements and Bundle",
+    content: `<p>You must prepare a signed, dated witness statement — your story in numbered paragraphs. The bundle is a file of documents used at the hearing, often prepared by the employer. You can suggest changes if anything is missing or wrong.</p>`
+  },
+  {
+    title: "The Hearing",
+    content: `<p>You’ll attend the tribunal hearing — in person, by phone, or online. You’ll answer questions (cross-examination) and can question the other side. Speak clearly and respectfully. Call the judge “Judge”.</p>`
+  },
+  {
+    title: "The Decision",
+    content: `<p>The tribunal will usually give a decision at the end or in writing later. They may award compensation or dismiss the claim. You can appeal, but only on a point of law.</p>`
+  }
+];
+
+function startEmploymentTribunalFlow() {
+  document.getElementById("navigator").style.display = "none";
+  document.getElementById("employment-tribunal-flow").style.display = "block";
+  tribunalStepIndex = 0;
+  renderTribunalStep();
+}
+
+function renderTribunalStep() {
+  const step = tribunalSteps[tribunalStepIndex];
+  document.getElementById("employment-tribunal-step").innerHTML = `
+    <h3>${step.title}</h3>
+    ${step.content}
+  `;
+}
+
+function nextTribunalStep() {
+  if (tribunalStepIndex < tribunalSteps.length - 1) {
+    tribunalStepIndex++;
+    renderTribunalStep();
+  }
+}
+
+function prevTribunalStep() {
+  if (tribunalStepIndex > 0) {
+    tribunalStepIndex--;
+    renderTribunalStep();
+  }
 }
   </script>
 </body>
